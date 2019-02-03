@@ -24,3 +24,11 @@ test('should load config property from environment rather then from config file'
     process.env.FOO = 'foo';
     expect(Config.getInstance().get('foo')).toBe('foo');
 });
+
+test('should load default value if config property not set', () => {
+    expect(Config.getInstance().get('1337', '42')).toBe('42');
+});
+
+test('should return undefined without default and if config property not set', () => {
+    expect(Config.getInstance().get('1337')).toBe(undefined);
+});

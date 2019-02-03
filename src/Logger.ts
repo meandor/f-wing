@@ -11,7 +11,7 @@ function initLogger() {
         winston.format.json()
     );
     loggerState = winston.createLogger({
-        level: Config.getInstance().get('log-level'),
+        level: Config.getInstance().get('log-level', 'info'),
         format: winston.format.combine(
             winston.format.colorize(),
             winston.format.timestamp(),

@@ -30,13 +30,17 @@ export class Config {
         return propertyName.toUpperCase().replace('-', '_');
     }
 
-    get(propertyName: string) {
+    get(propertyName: string, defaultValue?: string): string | undefined {
         const envPropertyName = Config.toEnvironmentPropertyName(propertyName);
 
         if (process.env[envPropertyName] !== undefined) {
             return process.env[envPropertyName];
         }
 
-        return this.properties[propertyName];
+        if (this.properties[propertyName] !== undefined) {
+            return this.properties[propertyName];
+        }
+
+        return defaultValue;
     }
 }
