@@ -15,4 +15,8 @@ export class Application {
             logger.info('Started application on port %s', port);
         });
     }
+
+    public addRoute(route: express.Router) {
+        this.expressInstance.use(route);
+    }
 }
