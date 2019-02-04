@@ -30,15 +30,24 @@ export class Config {
         return propertyName.toUpperCase().replace('-', '_');
     }
 
-    get(propertyName: string, defaultValue?: string): string | undefined {
+    private static toNumber(value: string | undefined) {
+        const convertedNumber = Number(value);
+        if (isNaN(convertedNumber)) {
+            return value;
+        } else {
+            return convertedNumber;
+        }
+    }
+
+    get(propertyName: string, defaultValue?: string | number): string | number | undefined {
         const envPropertyName = Config.toEnvironmentPropertyName(propertyName);
 
         if (process.env[envPropertyName] !== undefined) {
-            return process.env[envPropertyName];
+            return Config.toNumber(process.env[envPropertyName]);
         }
 
         if (this.properties[propertyName] !== undefined) {
-            return this.properties[propertyName];
+            return Config.toNumber(this.properties[propertyName]);
         }
 
         return defaultValue;

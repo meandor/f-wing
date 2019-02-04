@@ -16,7 +16,11 @@ test('should load config from environment', () => {
 test('should load config property from environment', () => {
     process.env.FOO_BAR = '1337';
 
-    expect(Config.getInstance().get('foo-bar')).toBe('1337');
+    expect(Config.getInstance().get('foo-bar')).toBe(1337);
+
+    process.env.FOO_BAR = 'a';
+
+    expect(Config.getInstance().get('foo-bar')).toBe('a');
 });
 
 test('should load config property from environment rather then from config file', () => {
@@ -31,4 +35,13 @@ test('should load default value if config property not set', () => {
 
 test('should return undefined without default and if config property not set', () => {
     expect(Config.getInstance().get('1337')).toBe(undefined);
+
+    process.env.CONFIG_FILE = 'test.json';
+    expect(Config.getInstance().get('1337')).toBe(undefined);
+});
+
+test('should return number if property is number', () => {
+    process.env.FOO = '1337';
+
+    expect(Config.getInstance().get('foo')).toBe(1337);
 });
