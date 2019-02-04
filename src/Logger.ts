@@ -13,11 +13,13 @@ function initLogger() {
     loggerState = winston.createLogger({
         level: String(Config.getInstance().get('log-level', 'info')),
         format: winston.format.combine(
+            winston.format.splat(),
             winston.format.colorize(),
             winston.format.timestamp(),
             winston.format.printf((info: any) => {
-                return `${info.timestamp} [${info.level}]: ${info.message}`;
-            })
+                    return `${info.timestamp} [${info.level}]: ${info.message}`;
+                }
+            )
         ),
         defaultMeta: {service: Config.getInstance().get('app-name')},
         transports: [
