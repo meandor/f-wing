@@ -28,6 +28,7 @@ export class Application {
     }
 
     public addRoute(route: express.Router) {
+        logger.info('adding endpoint %s', route.stack.map(layer => layer.route.path));
         this.expressInstance.use(route);
     }
 }
