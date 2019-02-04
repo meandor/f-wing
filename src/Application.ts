@@ -7,6 +7,17 @@ export class Application {
 
     constructor(expressInstance: express.Application) {
         this.expressInstance = expressInstance;
+
+        this.addRoute(this.routerWithDefaultEndpoints());
+    }
+
+    private routerWithDefaultEndpoints() {
+        const router = express.Router();
+        router.get('/health', (_, res) => {
+            res.status(200).send('HEALTHY');
+        });
+
+        return router;
     }
 
     public start() {
