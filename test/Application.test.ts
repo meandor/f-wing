@@ -11,7 +11,7 @@ describe('Application', () => {
             listen: jest.fn(),
             use: expressMockUse
         };
-        const expressMockApplication = jest.fn<any, any>(() => applicationStub);
+        const expressMockApplication = jest.fn<express.Application>(() => applicationStub);
         expressMock = new expressMockApplication();
         testee = new Application(expressMock);
     });
