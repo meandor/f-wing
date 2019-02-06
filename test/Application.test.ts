@@ -1,8 +1,10 @@
 import { Application } from '../src/Application';
 import * as express from 'express';
+import { Registry } from 'prom-client';
 
 describe('Application', () => {
     let expressMock: express.Application;
+    let mockRegistry: Registry;
     let testee: Application;
     const expressMockUse = jest.fn();
 
@@ -12,7 +14,15 @@ describe('Application', () => {
             use: expressMockUse
         }));
         expressMock = new expressMockApplication();
-        testee = new Application(expressMock);
+
+        const metricsMockRegistry = jest.fn<any, any>(() => ({
+            contentType: jest.fn(),
+            metrics: jest.fn(),
+            registerMetric: jest.fn()
+        }));
+        mockRegistry = new metricsMockRegistry();
+
+        testee = new Application(expressMock, mockRegistry);
     });
 
     it('should start up app instance on default port', () => {
@@ -34,5 +44,13 @@ describe('Application', () => {
         const firstRegisteredEndpint = calledRouter.stack.map((layer: any) => layer.route.path)[0];
 
         expect(firstRegisteredEndpint).toBe('/health');
+    });
+
+    it('should have added metrics endpoint when started', () => {
+        testee.start();
+        const calledRouter = expressMockUse.mock.calls[0][0];
+        const secondRegisteredEndpint = calledRouter.stack.map((layer: any) => layer.route.path)[1];
+
+        expect(secondRegisteredEndpint).toBe('/metrics');
     });
 });
