@@ -7,11 +7,10 @@ describe('Application', () => {
     const expressMockUse = jest.fn();
 
     beforeEach(() => {
-        const applicationStub = {
+        const expressMockApplication = jest.fn<express.Application>(() => ({
             listen: jest.fn(),
             use: expressMockUse
-        };
-        const expressMockApplication = jest.fn<express.Application>(() => applicationStub);
+        }));
         expressMock = new expressMockApplication();
         testee = new Application(expressMock);
     });
