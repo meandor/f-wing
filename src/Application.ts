@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { Config } from './Config';
-import { logger } from './Logger';
+import { logger } from './logger';
 import * as metrics from 'prom-client';
 import { Registry } from 'prom-client';
 
