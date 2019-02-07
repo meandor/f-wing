@@ -23,13 +23,11 @@ npm test
 ## Usage
 You can use this library in your index.ts like this:
 ```typescript
-import { Application } from 'f-wing';
+import { Application, defaultMetricsRegistry } from 'f-wing';
 import * as express from 'express';
-import { Registry } from 'prom-client';
 
 const expressInstance = express();
-const metricsRegistry = new Registry();
-const app = new Application(expressInstance, metricsRegistry);
+const app = new Application(expressInstance, defaultMetricsRegistry);
 // add routes here: app.addRoute(...)
 app.start();
 ```
