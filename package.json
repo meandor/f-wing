@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
+    "lint": "tslint -c tslint.json --project tsconfig.json src/**/*.ts",
     "build": "tsc"
   },
   "repository": {
