@@ -2,10 +2,11 @@
   "name": "f-wing",
   "version": "0.1.0",
   "description": "NodeJS express microservice",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
-    "start": "ts-node index.ts"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
