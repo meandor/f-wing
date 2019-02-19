@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/dschruhl/f-wing.git"
+    "url": "git+ssh://git@github.com:meandor/f-wing.git"
   },
   "keywords": [
     "microservice",
