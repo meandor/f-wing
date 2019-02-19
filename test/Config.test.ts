@@ -1,4 +1,4 @@
-import { Config } from '../src/Config';
+import { Config } from '../src';
 
 test('should only be one instance of Config', () => {
     expect(Config.getInstance()).toEqual(Config.getInstance());

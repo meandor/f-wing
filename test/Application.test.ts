@@ -1,4 +1,4 @@
-import { Application } from '../src/Application';
+import { Application } from '../src';
 import * as express from 'express';
 import { Registry } from 'prom-client';
 
