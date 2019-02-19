@@ -19,8 +19,8 @@
     "express"
   ],
   "author": "Daniel Schruhl",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/dschruhl/f-wing#readme",
+  "license": "MIT",
+  "homepage": "https://github.com/meandor/f-wing",
   "devDependencies": {
     "@types/express": "^4.16.1",
     "@types/jest": "^23.3.14",
