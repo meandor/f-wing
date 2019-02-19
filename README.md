@@ -1,5 +1,6 @@
 # f-wing
-
+[![NPM Version](https://img.shields.io/npm/v/f-wing.svg)](https://npmjs.org/package/f-wing)
+[![NPM Downloads](https://img.shields.io/npm/dm/f-wing.svg)](https://npmjs.org/package/f-wing)
 [![CircleCI](https://circleci.com/bb/dschruhl/f-wing.svg?style=svg)](https://circleci.com/bb/dschruhl/f-wing)
 
 > "Lets test these F-wings..."
