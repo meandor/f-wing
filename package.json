@@ -23,6 +23,7 @@
   "homepage": "https://github.com/meandor/f-wing",
   "devDependencies": {
     "@types/express": "^4.16.1",
+    "@types/helmet": "0.0.42",
     "@types/jest": "^23.3.14",
     "@types/node": "^10.12.21",
     "jest": "^24.1.0",
@@ -33,6 +34,7 @@
   },
   "dependencies": {
     "express": "^4.16.4",
+    "helmet": "^3.15.1",
     "prom-client": "^11.2.1",
     "winston": "^3.2.1"
   }

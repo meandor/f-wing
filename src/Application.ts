@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as helmet from 'helmet';
 import { Config } from './Config';
 import { logger } from './logger';
 import * as metrics from 'prom-client';
@@ -11,6 +12,7 @@ export class Application {
         this.expressInstance = expressInstance;
         metrics.collectDefaultMetrics({register: metricsRegistry});
         this.addRoute(this.routerWithDefaultEndpoints(metricsRegistry));
+        this.expressInstance.use(helmet());
     }
 
     private routerWithDefaultEndpoints(metricsRegistry: Registry) {
