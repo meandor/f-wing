@@ -31,8 +31,24 @@ describe('Application', () => {
         expect(expressMock.listen).toHaveBeenCalledWith(8080, expect.any(Function));
     });
 
-    it('should add express route ', () => {
+    it('should add empty express route ', () => {
         const route = express.Router();
+        testee.addRoute(route);
+
+        expect(expressMock.use).toHaveBeenCalledWith(route);
+    });
+
+    it('should add express route with path', () => {
+        const route = express.Router();
+        route.stack.push({name: 'foo', route: {path: '/bar'}});
+        testee.addRoute(route);
+
+        expect(expressMock.use).toHaveBeenCalledWith(route);
+    });
+
+    it('should add route with name and without path', () => {
+        const route = express.Router();
+        route.stack.push({name: 'foo', route: undefined});
         testee.addRoute(route);
 
         expect(expressMock.use).toHaveBeenCalledWith(route);

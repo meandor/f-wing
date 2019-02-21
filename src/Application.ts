@@ -15,6 +15,14 @@ export class Application {
         this.expressInstance.use(helmet());
     }
 
+    private static getDescriptor(layer: any): string {
+        if (layer.route) {
+            return layer.route.path;
+        } else {
+            return layer.name;
+        }
+    }
+
     private routerWithDefaultEndpoints(metricsRegistry: Registry) {
         const router = express.Router();
         router.get('/health', (_, res) => {
@@ -37,7 +45,7 @@ export class Application {
     }
 
     public addRoute(route: express.Router) {
-        logger.info('adding endpoint %s', route.stack.map(layer => layer.route.path));
+        logger.info('adding endpoint %s', route.stack.map(Application.getDescriptor));
         this.expressInstance.use(route);
     }
 }
