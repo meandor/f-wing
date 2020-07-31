@@ -10,7 +10,7 @@ commands:
     description: "Restore npm cache"
     steps:
       - restore_cache:
-          key:
+          keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
 
@@ -18,9 +18,9 @@ commands:
     description: "Save npm cache"
     steps:
       - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
 
 jobs:
   lint:
