@@ -1,7 +1,8 @@
 # f-wing
 [![NPM Version](https://img.shields.io/npm/v/f-wing.svg)](https://npmjs.org/package/f-wing)
 [![NPM Downloads](https://img.shields.io/npm/dm/f-wing.svg)](https://npmjs.org/package/f-wing)
-[![CircleCI](https://circleci.com/gh/meandor/f-wing.svg?style=svg)](https://circleci.com/gh/meandor/f-wing)
+[![CircleCI](https://circleci.com/gh/meandor/f-wing.svg?style=shield)](https://circleci.com/gh/meandor/f-wing)
+[![GitHub license](https://img.shields.io/github/license/meandor/f-wing)](https://github.com/meandor/f-wing/blob/master/LICENSE)
 
 > "Lets test these F-wings..."
 >
