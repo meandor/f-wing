@@ -1,24 +1,61 @@
 version: 2.1
-jobs:
-  build:
-    docker:
-      - image: circleci/node:14
 
-    working_directory: ~/repo
+node-docker-image: &node-docker-image
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:14
 
+commands:
+  restore-npm-cache:
+    description: "Restore npm cache"
     steps:
-      - checkout
-
       - restore_cache:
-          keys:
+          key:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
 
-      - run: npm install
-
+  save-npm-cache:
+    description: "Save npm cache"
+    steps:
       - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
 
+jobs:
+  lint:
+    <<: *node-docker-image
+    steps:
+      - checkout
+      - restore-npm-cache
+      - run: npm install
+      - save-npm-cache
+      - run: npm run lint
+
+  test:
+    <<: *node-docker-image
+    steps:
+      - checkout
+      - restore-npm-cache
+      - run: npm install
+      - save-npm-cache
       - run: npm test
+
+  build:
+    <<: *node-docker-image
+    steps:
+      - checkout
+      - restore-npm-cache
+      - run: npm install
+      - save-npm-cache
+      - run: npm run build
+
+workflows:
+  test-build:
+    jobs:
+      - test
+      - lint
+      - build:
+          requires:
+            - test
+            - lint
