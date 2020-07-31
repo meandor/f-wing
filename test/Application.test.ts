@@ -18,7 +18,9 @@ describe('Application', () => {
         const metricsMockRegistry = jest.fn<any, any>(() => ({
             contentType: jest.fn(),
             metrics: jest.fn(),
-            registerMetric: jest.fn()
+            registerMetric: jest.fn(),
+            registerCollector: jest.fn(),
+            collectors: () => []
         }));
         mockRegistry = new metricsMockRegistry();
 
